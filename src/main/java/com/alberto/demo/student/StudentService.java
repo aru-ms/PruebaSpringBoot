@@ -41,7 +41,8 @@ public class StudentService {
 
     @Transactional
     public void updateStudent(Long studentId, String name, String email) {
-        Student student = studentRepository.findById(studentId).orElseThrow(() -> new IllegalStateException("El estudiante con id " + studentId + " no existe"));
+        Student student = studentRepository.findById(studentId)
+            .orElseThrow(() -> new IllegalStateException("El estudiante con id " + studentId + " no existe"));
         if (name != null && name.length() > 0 && !Objects.equals(student.getName(), name)) {
             student.setName(name);
         }
